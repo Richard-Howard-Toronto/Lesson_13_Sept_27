@@ -1,9 +1,65 @@
 class Contact
 
-  # This method should initialize the contact's attributes
-  def initialize
+  @@contacts = []  #These variables will be available to all Contact object instances.
+  @@id = 100
 
-  end
+
+    def initialize(first_name, last_name, email, note)
+        @first_name = first_name
+        @last_name = last_name
+        @email = email
+        @note = note
+    end
+
+    # a setter (*set* the value of an attribute)
+    def first_name=(first_name)
+      @first_name=first_name
+    end
+
+    # a setter (*set* the value of an attribute)
+    def last_name=(last_name)
+      @last_name=last_name
+    end
+
+
+    # a setter (*set* the value of an attribute)
+    def email=(email)
+      @email = email
+    end
+
+    # a setter (*set* the value of an attribute)
+    def note=(note)
+      @note = note
+    end
+
+    # a getter (*get* the value of an attribute)
+
+    def first_name
+      @first_name
+    end
+
+    # a getter (*get* the value of an attribute)
+
+    def last_name
+      @last_name
+    end
+
+    # a getter (*get* the value of an attribute)
+
+    def email
+      @email
+    end
+
+    # a getter (*get* the value of an attribute)
+
+    def note
+      @note
+    end
+
+
+
+
+
 
   # This method should call the initializer,
   # store the newly created contact, and then return it
@@ -56,3 +112,21 @@ class Contact
   # Feel free to add other methods here, if you need them.
 
 end
+
+
+contact = Contact.new('Richard','Howard','rh@gmail','from Dartmouth')
+
+
+# setters
+
+contact.note = 'beginning student'
+contact.email = 'new email.com'
+contact.first_name = 'Rocky'
+contact.last_name ='Moose'
+
+# getter, gets the info from the note instance variable
+
+p contact.first_name
+p contact.last_name
+p contact.note
+p contact.email
