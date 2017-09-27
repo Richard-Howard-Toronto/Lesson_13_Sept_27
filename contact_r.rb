@@ -59,13 +59,11 @@ class Contact
     end
 
     def self.find_by(inputted_variable)
-      inputted_variable = gets.chomp
         contact_array = @@contacts
         contact_array.each do |var|
             if var.id == inputted_variable
               return var
             end
-            binding.pry
         end
 
     end
@@ -116,7 +114,6 @@ class Contact
   # and return the contact who has that id
   def self.find=(id)
 
-
   end
 
   # This method should allow you to specify
@@ -131,9 +128,7 @@ class Contact
   # but it should allow you to search for a contact using attributes other than id
   # by specifying both the name of the attribute and the value
   # eg. searching for 'first_name', 'Betty' should return the first contact named Betty
-  def self.find_by
 
-  end
 
   # This method should delete all of the contacts
   def self.delete_all
@@ -141,7 +136,7 @@ class Contact
   end
 
   def full_name
-
+    puts "Full name is #{first_name} #{last_name}"
   end
 
   # This method should delete the contact
@@ -162,14 +157,11 @@ contact = Contact.create('Richard','Howard','rh@gmail','from Dartmouth')
 contact = Contact.create('Dave','Smith','ds@xmail',' Halifax')
 
 # getter, gets the info from the note instance variable
-
-p contact.first_name
-p contact.last_name
-p contact.note
-p contact.email
-p contact.id
-p contact.time
-
-p Contact.find(101)
-
-p Contact.find_by()
+#
+# p contact.first_name
+# p contact.last_name
+# p contact.note
+# p contact.email
+# p contact.id
+# p contact.time
+# p contact.full_name
