@@ -1,15 +1,28 @@
+
+require 'pry'
+
 class Contact
 
   @@contacts = []  #These variables will be available to all Contact object instances.
   @@id = 100
-
 
     def initialize(first_name, last_name, email, note)
         @first_name = first_name
         @last_name = last_name
         @email = email
         @note = note
+        @id = @@id
+        @@id += 1 # this way the next contact will get a different id
+        @time = Time.now  #time stamp for the new client
     end
+
+    # -> 'settor' Class Method remember, we preface the method name with 'self.' if it is a class method
+    def self.create(first_name, last_name, email, note)
+      new_contact = Contact.new(first_name, last_name, email, note)
+      @@contacts << new_contact
+      return new_contact
+    end
+
 
     # a setter (*set* the value of an attribute)
     def first_name=(first_name)
@@ -21,16 +34,44 @@ class Contact
       @last_name=last_name
     end
 
-
     # a setter (*set* the value of an attribute)
     def email=(email)
       @email = email
     end
 
     # a setter (*set* the value of an attribute)
+
     def note=(note)
       @note = note
     end
+
+    #a getter ?
+    #creating an array
+#?
+
+    def self.find(inputted_id)
+        contact_array = @@contacts
+        contact_array.each do |var|
+            if var.id == inputted_id
+              return var
+            end
+        end
+    end
+
+    def self.find_by(inputted_variable)
+      inputted_variable = gets.chomp
+        contact_array = @@contacts
+        contact_array.each do |var|
+            if var.id == inputted_variable
+              return var
+            end
+            binding.pry
+        end
+
+    end
+
+
+
 
     # a getter (*get* the value of an attribute)
 
@@ -56,25 +97,25 @@ class Contact
       @note
     end
 
+    # a getter (*get* the value of an attribute)
 
+    def id
+      @id
+    end
 
+    def time
+      @time
+    end
 
-
-
-  # This method should call the initializer,
-  # store the newly created contact, and then return it
-  def self.create
-
-  end
-
-  # This method should return all of the existing contacts
+  # a getter -> This method should return all of the existing contacts
   def self.all
-
+    @@contacts
   end
 
   # This method should accept an id as an argument
   # and return the contact who has that id
-  def self.find
+  def self.find=(id)
+
 
   end
 
@@ -113,16 +154,12 @@ class Contact
 
 end
 
-
-contact = Contact.new('Richard','Howard','rh@gmail','from Dartmouth')
-
+#use Contact.create, not Contact.new
 
 # setters
 
-contact.note = 'beginning student'
-contact.email = 'new email.com'
-contact.first_name = 'Rocky'
-contact.last_name ='Moose'
+contact = Contact.create('Richard','Howard','rh@gmail','from Dartmouth')
+contact = Contact.create('Dave','Smith','ds@xmail',' Halifax')
 
 # getter, gets the info from the note instance variable
 
@@ -130,3 +167,9 @@ p contact.first_name
 p contact.last_name
 p contact.note
 p contact.email
+p contact.id
+p contact.time
+
+p Contact.find(101)
+
+p Contact.find_by()

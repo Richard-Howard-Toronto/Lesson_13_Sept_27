@@ -14,11 +14,12 @@
       permitted_person_array.each do |name|
 
         if entered_name == name
-          puts "entered_name matches name"
-          break
+          return "entered_name matches name"
+
         else
           puts "who goes there?  does not match permitted_person_array"
           break
         end
 
       end
+ return ""
