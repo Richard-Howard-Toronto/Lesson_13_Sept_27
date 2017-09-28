@@ -120,7 +120,22 @@ class Contact
   # 1. which of the contact's attributes you want to update
   # 2. the new value for that attribute
   # and then make the appropriate change to the contact
-  def update
+
+  # this is a setter
+
+  def update(attribute1,value1)  #passing the inputted name to the contact
+
+    if attribute1 == 'first_name'
+      @first_name=value1
+    elsif attribute1 == 'last_name'
+      @last_name=value1
+    elsif attribute1 == 'email'
+      @email= email
+    elsif attribute1 == 'note'
+      @note = note
+
+    end
+
 
   end
 
@@ -153,8 +168,9 @@ end
 
 # setters
 
-contact = Contact.create('Richard','Howard','rh@gmail','from Dartmouth')
-contact = Contact.create('Dave','Smith','ds@xmail',' Halifax')
+contact = Contact.create('Richard','Howard','rich@mail','from Dartmouth')
+contact = Contact.create('Dave','Smith','dave@mail',' Halifax')
+contact = Contact.create('Joe','Jones','joe@mail',' Chester')
 
 # getter, gets the info from the note instance variable
 #

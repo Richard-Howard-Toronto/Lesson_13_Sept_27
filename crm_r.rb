@@ -23,6 +23,7 @@ class CRM
     puts '[4] Display all the contacts'
     puts '[5] Search by attribute'
     puts '[6] Exit'
+    puts '[7] Display Full Name'
     puts 'Enter a number: '
   end
 
@@ -34,10 +35,11 @@ class CRM
       when 4 then display all the contacts
       when 5 then seach by attribute
       when 6 then Exit
+      when 7 then display full name
     end
   end
 
-#----------
+# 1 ----------
 
   def add_new_contact   #object = instance
 
@@ -57,7 +59,7 @@ class CRM
 
   end
 
-#----------
+# 2 ----------
 
   def modify_existing_contact
 
@@ -65,28 +67,29 @@ class CRM
     id = gets.chomp.to_i
     contact_person = Contact.find_by(id)
 
+    puts "the contact id is #{id}"
     puts "What would you like to modify?"
     variable = gets.chomp
 
       if variable == 'first_name'
 
-        print 'Enter First Name: '
-        first_name = gets.chomp
+        print 'Enter new First Name: '
+        info = gets.chomp
 
-      elsif variable == last_name
+      elsif variable == 'last_name'
 
-        print 'Enter Last Name: '
-        last_name = gets.chomp
+        print 'Enter new Last Name: '
+        info = gets.chomp
 
-      elsif variable == email
+      elsif variable == 'email'
 
-        print 'Enter Email Address: '
-        email = gets.chomp
+        print 'Enter new Email Address: '
+        info = gets.chomp
 
-      elsif variable == note
+      elsif variable == 'note'
 
-        print 'Enter a Note: '
-        note = gets.chomp
+        print 'Enter new Note (replaces old note): '
+        info = gets.chomp
 
       else
 
@@ -94,12 +97,12 @@ class CRM
 
       end
 
-      contact_person.update(first_name, last_name, email, note)
+      contact_person.update(variable,info)
 
   end
 
 
-#----------
+# 3 ----------
 
   def delete_contact
     puts "enter an id number"
@@ -108,7 +111,10 @@ class CRM
     contact_person.delete(first_name, last_name, email, note)
   end
 
+# 4 ----------
+
   def display_all_contacts
+    puts "here are all the contacts"
     p Contacts
   end
 
@@ -116,6 +122,10 @@ class CRM
 
   end
 
+# 7 - display full name ---------
+  def display_full_name
+    
+  end
 
 end
 
