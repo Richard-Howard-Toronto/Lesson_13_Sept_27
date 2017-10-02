@@ -53,6 +53,6 @@ end
 
 p clark
 
-p clark.first_name
+p clark.firstname
 p clark.last_name
 p clark.notes

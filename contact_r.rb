@@ -17,6 +17,7 @@ class Contact
     end
 
     # -> 'settor' Class Method remember, we preface the method name with 'self.' if it is a class method
+
     def self.create(first_name, last_name, email, note)
       new_contact = Contact.new(first_name, last_name, email, note)
       @@contacts << new_contact
@@ -45,31 +46,11 @@ class Contact
       @note = note
     end
 
-    #a getter ?
-    #creating an array
-#?
+#---------------------------------
 
-    def self.find(inputted_id)
-        contact_array = @@contacts
-        contact_array.each do |var|
-            if var.id == inputted_id
-              return var
-            end
-        end
+    def self.find_by(key, value)
+      @@contacts.find  { | contact | contact.send(key) == value}
     end
-
-    def self.find_by(inputted_variable)
-        contact_array = @@contacts
-        contact_array.each do |var|
-            if var.id == inputted_variable
-              return var
-            end
-        end
-
-    end
-
-
-
 
     # a getter (*get* the value of an attribute)
 
@@ -168,16 +149,19 @@ end
 
 # setters
 
-contact = Contact.create('Richard','Howard','rich@mail','from Dartmouth')
-contact = Contact.create('Dave','Smith','dave@mail',' Halifax')
-contact = Contact.create('Joe','Jones','joe@mail',' Chester')
+contact1 = Contact.create('Richard','Howard','1@mail','from Dartmouth')
+contact2 = Contact.create('Dave','Smith','2@mail',' Halifax')
+contact3 = Contact.create('Joe','Jones','3@mail',' Chester')
+contact4 = Contact.create('Sue','Jones','4@mail',' South')
+contact5 = Contact.create('Rapper','Ron','5@mail',' North')
+contact6 = Contact.create('Doug','Brone','6@mail',' Est')
 
 # getter, gets the info from the note instance variable
 #
-# p contact.first_name
-# p contact.last_name
-# p contact.note
-# p contact.email
-# p contact.id
-# p contact.time
-# p contact.full_name
+p contact1.first_name
+p contact1.last_name
+p contact1.note
+p contact1.email
+p contact1.id
+p contact1.time
+p contact1.full_name

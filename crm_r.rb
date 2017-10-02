@@ -5,11 +5,11 @@ class CRM
 
 
   def initialize
-
+    @askagain = true
   end
 
   def main_menu
-    while true # repeat indefinitely
+    while @askagain # repeat indefinitely
       print_main_menu
       user_selected = gets.to_i
       call_option(user_selected)
@@ -23,7 +23,6 @@ class CRM
     puts '[4] Display all the contacts'
     puts '[5] Search by attribute'
     puts '[6] Exit'
-    puts '[7] Display Full Name'
     puts 'Enter a number: '
   end
 
@@ -31,11 +30,10 @@ class CRM
     case user_selected
       when 1 then add_new_contact
       when 2 then modify_existing_contact
-      when 3 then delete a contact
-      when 4 then display all the contacts
-      when 5 then seach by attribute
-      when 6 then Exit
-      when 7 then display full name
+      when 3 then delete_a_contact
+      when 4 then display_all_contacts
+      when 5 then search_by_attribute
+      when 6 then exit_the_program
     end
   end
 
@@ -67,7 +65,6 @@ class CRM
     id = gets.chomp.to_i
     contact_person = Contact.find_by(id)
 
-    puts "the contact id is #{id}"
     puts "What would you like to modify?"
     variable = gets.chomp
 
@@ -97,35 +94,56 @@ class CRM
 
       end
 
-      contact_person.update(variable,info)
+      puts "the new info entered is #{info}"
+
 
   end
 
 
 # 3 ----------
 
-  def delete_contact
+  def delete_a_contact
     puts "enter an id number"
     id = gets.chomp.to_i
-    contact_person = Contact.find_by(id)  # class Method --> def self.find_by(inputted_variable)
-    contact_person.delete(first_name, last_name, email, note)
+
+    contact_to_delete = Contact.find(id)
+
+    contact_to_delete
+
+    puts "Contact #{id} has been deleted"
+
   end
 
 # 4 ----------
 
-  def display_all_contacts
-    puts "here are all the contacts"
-    p Contacts
-  end
+    def display_all_contacts
+      Contact.all.each  do |contact|
+        puts "the contacts is #{contact.first_name} and #{contact.last_name}, with email #{contact.email}"
+      end
+    end
 
-  def search_by_attribute
 
-  end
+# 5 seach by attribute
 
-# 7 - display full name ---------
-  def display_full_name
-    
-  end
+
+    def search_by_attribute
+
+        print "Enter an attribute, first_name, last_name, email or notes: "
+
+        key = gets.chomp
+
+        print "Enter the current value (search term):"
+
+        value = gets.chomp
+
+        puts Contact.find_by(key, value).inspect
+
+      end
+
+      def exit_the_program
+        @askagain = false
+      end
+
 
 end
 
